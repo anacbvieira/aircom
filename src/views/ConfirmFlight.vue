@@ -25,8 +25,6 @@ export default {
       gate: '',
       flight: [],
       info: [],
-      FilteredFlight: [],
-      FilteredGate: [],
       modal: false,
     };
   },
@@ -45,18 +43,8 @@ export default {
         dado => dado.code.toLowerCase().startsWith(this.flight.code.toLowerCase()),
       );
     },
-    SetFlight(flight) {
-      this.flight = flight;
-      this.flight.departure_date = new Date(this.flight.departure_date).toLocaleString('pt-BR');
-      this.flight.arrival_date = new Date(this.flight.arrival_date).toLocaleString('pt-BR');
-      this.modal = false;
-      console.log(flight);
-    },
-    SetGate(gate) {
-      this.gate = gate;
-    },
     SendMensage(flight) {
-      this.$http.post(`${this.$config.server}/flights-lists/${flight.id}`, this.flight)
+      this.$http.put(`${this.$config.server}/flights-lists/${flight.id}`, this.flight)
         .then(() => {
           swal('Ação finalizada', 'Confirmação enviada', 'success');
           this.flight = {};

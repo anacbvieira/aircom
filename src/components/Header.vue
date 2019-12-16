@@ -61,6 +61,6 @@ export default {
 .logociaaerea img {
     width: 90px;
     height: 100px;
-    margin-left: 625px;
+    margin-left: 569px;
 }
 </style>

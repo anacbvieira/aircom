@@ -33,7 +33,7 @@
           </div>
           <div class="row">
             <div>Data/Hora: </div>
-            <datetime type="datetime" v-model="flight.arrival_date" locale='br'></datetime>
+            <datetime type="datetime" v-model="flight.departure_date" locale='br'></datetime>
           </div>
         </div>
 
@@ -46,7 +46,7 @@
           </div>
           <div class="row">
             <div>Data/Hora:</div>
-            <datetime type="datetime" v-model="flight.departure_date" place></datetime>
+            <datetime type="datetime" v-model="flight.arrival_date" place></datetime>
           </div>
         </div>
 

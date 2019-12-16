@@ -33,7 +33,7 @@
           </div>
           <div class="row">
             <div >Data/Hora: </div>
-            <div><span type="date">{{flight.arrival_date}}</span> </div>
+            <div><span type="date">{{flight.departure_date}}</span> </div>
           </div>
         </div>
 
@@ -46,7 +46,7 @@
           </div>
           <div class="row">
             <div >Data/Hora:</div>
-            <div > {{flight.departure_date}}</div>
+            <div > {{flight.arrival_date}}</div>
           </div>
         </div>
         <div class="icon"></div>
@@ -64,9 +64,41 @@
 export default {
   name: 'flightview',
   props: {
-    flight: {
-      type: Array,
+    flight: Array,
+    info: Array,
+  },
+  data() {
+    return {
+      gate: '',
+      FilteredFlight: [],
+      FilteredGate: [],
+      modal: false,
+    };
+  },
+  methods: {
+    GetItems() {
+      this.$http.get(`${this.$config.server}/flights`)
+        .then((response) => { this.info = response.data; })
+        .catch(ex => console.log(ex));
     },
+    FilterFlight() {
+      this.FilteredFlight = this.info.filter(
+        dado => dado.code.toLowerCase().startsWith(this.flight.code.toLowerCase()),
+      );
+    },
+    SetFlight(flight) {
+      this.flight = flight;
+      this.flight.departure_date = new Date(this.flight.departure_date).toLocaleString('pt-BR');
+      this.flight.arrival_date = new Date(this.flight.arrival_date).toLocaleString('pt-BR');
+      this.modal = false;
+      console.log(flight);
+    },
+    SetGate(gate) {
+      this.gate = gate;
+    },
+  },
+  mounted() {
+    this.GetItems();
   },
 };
 </script>
