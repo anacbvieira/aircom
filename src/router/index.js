@@ -1,22 +1,42 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Login from '../views/Login.vue';
+import Options from '../views/Options.vue';
+import Confirm from '../views/ConfirmFlight.vue';
+import Alter from '../views/AlterFlight.vue';
+import Cancel from '../views/CancelFlight.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home,
+    redirect: '/login',
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/login',
+    name: 'login',
+    component: Login,
+  },
+  {
+    path: '/options',
+    name: 'options',
+    component: Options,
+  },
+  {
+    path: '/confirmflight',
+    name: 'confirmflight',
+    component: Confirm,
+  },
+  {
+    path: '/alterflight',
+    name: 'alterflight',
+    component: Alter,
+  },
+  {
+    path: '/cancelflight',
+    name: 'cancelflight',
+    component: Cancel,
   },
 ];
 
